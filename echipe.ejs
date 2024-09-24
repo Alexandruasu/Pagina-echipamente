@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echipe</title>
+    <link rel="stylesheet" href="/css/stil.css">
+</head>
+<body>
+    <div>
+        <p id="selectedCount">Numărul de nume selectate: 0</p>
+        <button id="resetButton">Resetează selecțiile</button>
+    </div>
+    <div>
+        <label for="sortOrder">Sortează:</label>
+        <select id="sortOrder">
+            <option value="ascendent">Ascendent</option>
+            <option value="descendent">Descendent</option>
+        </select>
+        <button id="sortButton">Sortează</button>
+    </div>
+    <div>
+        <label><input type="radio" name="filter" value="toate" checked> Toate</label>
+        <label><input type="radio" name="filter" value="active"> Active</label>
+        <label><input type="radio" name="filter" value="inactive"> Inactive</label>
+        <button id="filterButton">Filtrează</button>
+    </div>
+    <div id="echipe-container">
+        <% echipe.forEach(function(team, index) { %>
+            <article class="echipa <%= team.culoare_emblema || 'default' %> c<%= index % 4 %>" data-active="<%= team.nr_proiecte !== 0 && team.membri_echipa.length !== 0 %>">
+                <h2 id="titlu<%= team.id %>"><%= team.nume %></h2>
+                <p><strong>Rating:</strong> <strong><%= team.rating %></strong>, <strong>Proiecte:</strong> <strong><%= team.nr_proiecte %></strong>, <strong>Culoare:</strong> <strong><%= team.culoare_emblema || 'N/A' %></strong></p>
+                <ul class="membri-echipa">
+                    <% team.membri_echipa.forEach(function(member) { %>
+                        <li>
+                            <%= member %>
+                            <button class="select-button">Selectează</button>
+                        </li>
+                    <% }); %>
+                </ul>
+                <% if (team.nr_proiecte === 0 || team.membri_echipa.length === 0) { %>
+                    <p>Echipa este inactiva.</p>
+                <% } %>
+                <time datetime="<%= team.data_adaugare %>">
+                    Adaugat: <%= new Date(team.data_adaugare).toLocaleDateString('ro-RO', {
+                        year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', weekday: 'long'
+                    }) %>
+                </time>
+            </article>
+        <% }); %>
+    </div>
+    <script src="/js/echipe.js"></script>
+</body>
+</html>

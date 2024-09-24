@@ -1,0 +1,49 @@
+:root {
+    --c0: #a61d1d;
+    --c1: #bcdb21;
+    --c2: #2fc753;
+    --c3: #7546a3;
+}
+
+#echipe-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.echipa {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.echipa ul {
+    list-style-type: square;
+}
+
+
+/* Variabile de culoare pentru articole */
+.c0 {
+    background-color: var(--c0);
+}
+.c1 {
+    background-color: var(--c1);
+}
+.c2 {
+    background-color: var(--c2);
+}
+.c3 {
+    background-color: var(--c3);
+}
+
+/* Stiluri pentru selecția numelor */
+.membri-echipa li {
+    position: relative;
+    padding-right: 70px;
+}
+
+.select-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
